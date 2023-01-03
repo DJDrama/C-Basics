@@ -24,13 +24,9 @@ namespace InvoiceCalculator
             InitializeComponent();
         }
 
-        private void btnCalculate_Click(object sender, EventArgs e)
+        private (decimal discountPercent, decimal discountAmount, decimal invoiceTotal) GetInvoiceAmounts(string customerType, decimal subTotal)
         {
-            string customerType = txtCustomerType.Text;
-
-            decimal subTotal = Convert.ToDecimal(txtEnterSubtotal.Text);
             decimal discountPercent = 0m;
-
             switch (customerType)
             {
                 case "R":
@@ -60,9 +56,24 @@ namespace InvoiceCalculator
                     discountPercent = .4m;
                     break;
             }
+
             decimal discountAmount = Math.Round(subTotal * discountPercent, 2);
             decimal invoiceTotal = subTotal - discountAmount;
 
+            return (discountPercent, discountAmount, invoiceTotal);
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            string customerType = txtCustomerType.Text;
+            decimal subTotal = Convert.ToDecimal(txtEnterSubtotal.Text);
+
+            // Tuple
+            (decimal discountPercent, 
+                decimal discountAmount, 
+                decimal invoiceTotal) = GetInvoiceAmounts(customerType, subTotal);
+
+         
             maximumInvoice = Math.Max(maximumInvoice, invoiceTotal);
             minimumInvoice = Math.Min(minimumInvoice, invoiceTotal);
 
@@ -70,9 +81,10 @@ namespace InvoiceCalculator
             txtMaximumInvoice.Text = maximumInvoice.ToString("c");
 
             txtSubtotal.Text = subTotal.ToString("c");
+             txtTotal.Text = invoiceTotal.ToString("c");
+
             txtDiscountPercent.Text = discountPercent.ToString("p1"); // percent formatting (p1)
             txtDiscountAmount.Text = discountAmount.ToString("c"); // currency formatting (c)
-            txtTotal.Text = invoiceTotal.ToString("c");
 
             numberOfInvoices++;
             totalOfInvoices += invoiceTotal;

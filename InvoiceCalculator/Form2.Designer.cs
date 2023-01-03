@@ -74,6 +74,7 @@
             this.txtMonthlyInvestment.Name = "txtMonthlyInvestment";
             this.txtMonthlyInvestment.Size = new System.Drawing.Size(100, 20);
             this.txtMonthlyInvestment.TabIndex = 1;
+            this.txtMonthlyInvestment.TextChanged += new System.EventHandler(this.ClearFutureValue);
             // 
             // txtYearlyInterestRate
             // 
@@ -82,6 +83,7 @@
             this.txtYearlyInterestRate.Name = "txtYearlyInterestRate";
             this.txtYearlyInterestRate.Size = new System.Drawing.Size(100, 20);
             this.txtYearlyInterestRate.TabIndex = 2;
+            this.txtYearlyInterestRate.TextChanged += new System.EventHandler(this.ClearFutureValue);
             // 
             // txtNumberOfYears
             // 
@@ -90,6 +92,7 @@
             this.txtNumberOfYears.Name = "txtNumberOfYears";
             this.txtNumberOfYears.Size = new System.Drawing.Size(100, 20);
             this.txtNumberOfYears.TabIndex = 3;
+            this.txtNumberOfYears.TextChanged += new System.EventHandler(this.ClearFutureValue);
             // 
             // label4
             // 

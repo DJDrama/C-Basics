@@ -16,8 +16,8 @@ namespace InvoiceCalculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new fimInvoiceCalculator());
-            Application.Run(new frmFutureValue());
+            Application.Run(new fimInvoiceCalculator());
+           // Application.Run(new frmFutureValue());
         }
     }
 }

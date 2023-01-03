@@ -24,22 +24,32 @@ namespace InvoiceCalculator
             int years = Convert.ToInt32(txtNumberOfYears.Text);
             int month = years * 12;
 
-            decimal monthlyIntresetRate = yearlyInterestRate / 12 / 100;
+            decimal monthlyIntersetRate = yearlyInterestRate / 12 / 100;
 
-            decimal futureValue = 0m;
-
-            for (int i = 0; i<month; i++)
-            {
-                futureValue = (futureValue + monthlyInvestment) * (monthlyIntresetRate + 1);
-            }
-
+            decimal futureValue = CalculateFutureValue(monthlyInvestment, monthlyIntersetRate, month);
             txtFutureValue.Text = futureValue.ToString("c");
             txtMonthlyInvestment.Focus();
+        }
+
+        private decimal CalculateFutureValue(decimal monthlyInvestment, decimal monthlyInterestRate, int months)
+        {
+            decimal futureValue = 0m;
+
+            for (int i = 0; i < months; i++)
+            {
+                futureValue = (futureValue + monthlyInvestment) * (monthlyInterestRate + 1);
+            }
+            return futureValue;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ClearFutureValue(object sender, EventArgs e)
+        {
+            txtFutureValue.Text = null;
         }
     }
 }
