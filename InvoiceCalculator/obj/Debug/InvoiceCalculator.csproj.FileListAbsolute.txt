@@ -9,3 +9,4 @@
 \\Mac\Home\Desktop\C#\Practices\InvoiceCalculator\InvoiceCalculator\InvoiceCalculator\obj\Debug\InvoiceCalculator.csproj.CoreCompileInputs.cache
 \\Mac\Home\Desktop\C#\Practices\InvoiceCalculator\InvoiceCalculator\InvoiceCalculator\obj\Debug\InvoiceCalculator.exe
 \\Mac\Home\Desktop\C#\Practices\InvoiceCalculator\InvoiceCalculator\InvoiceCalculator\obj\Debug\InvoiceCalculator.pdb
+\\Mac\Home\Desktop\C#\Practices\InvoiceCalculator\InvoiceCalculator\InvoiceCalculator\obj\Debug\InvoiceCalculator.frmFutureValue.resources
