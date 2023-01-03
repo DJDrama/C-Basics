@@ -51,12 +51,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtMinimumInvoice = new System.Windows.Forms.TextBox();
             this.txtMaximumInvoice = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCustomerType = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(12, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
@@ -65,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 86);
+            this.label2.Location = new System.Drawing.Point(12, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 1;
@@ -74,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 120);
+            this.label3.Location = new System.Drawing.Point(12, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 2;
@@ -83,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 154);
+            this.label4.Location = new System.Drawing.Point(12, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 3;
@@ -92,7 +94,7 @@
             // txtEnterSubtotal
             // 
             this.txtEnterSubtotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEnterSubtotal.Location = new System.Drawing.Point(118, 16);
+            this.txtEnterSubtotal.Location = new System.Drawing.Point(118, 51);
             this.txtEnterSubtotal.Name = "txtEnterSubtotal";
             this.txtEnterSubtotal.Size = new System.Drawing.Size(100, 20);
             this.txtEnterSubtotal.TabIndex = 4;
@@ -100,7 +102,7 @@
             // txtDiscountPercent
             // 
             this.txtDiscountPercent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDiscountPercent.Location = new System.Drawing.Point(118, 84);
+            this.txtDiscountPercent.Location = new System.Drawing.Point(118, 119);
             this.txtDiscountPercent.Name = "txtDiscountPercent";
             this.txtDiscountPercent.ReadOnly = true;
             this.txtDiscountPercent.Size = new System.Drawing.Size(100, 20);
@@ -109,7 +111,7 @@
             // txtDiscountAmount
             // 
             this.txtDiscountAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDiscountAmount.Location = new System.Drawing.Point(118, 118);
+            this.txtDiscountAmount.Location = new System.Drawing.Point(118, 153);
             this.txtDiscountAmount.Name = "txtDiscountAmount";
             this.txtDiscountAmount.ReadOnly = true;
             this.txtDiscountAmount.Size = new System.Drawing.Size(100, 20);
@@ -118,7 +120,7 @@
             // txtTotal
             // 
             this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTotal.Location = new System.Drawing.Point(118, 152);
+            this.txtTotal.Location = new System.Drawing.Point(118, 187);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
@@ -126,7 +128,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(60, 201);
+            this.btnCalculate.Location = new System.Drawing.Point(103, 243);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(75, 23);
             this.btnCalculate.TabIndex = 8;
@@ -137,7 +139,7 @@
             // btnExit
             // 
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnExit.Location = new System.Drawing.Point(244, 201);
+            this.btnExit.Location = new System.Drawing.Point(287, 243);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 9;
@@ -148,7 +150,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 52);
+            this.label5.Location = new System.Drawing.Point(13, 87);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 10;
@@ -184,7 +186,7 @@
             // txtSubtotal
             // 
             this.txtSubtotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSubtotal.Location = new System.Drawing.Point(118, 50);
+            this.txtSubtotal.Location = new System.Drawing.Point(118, 85);
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.ReadOnly = true;
             this.txtSubtotal.Size = new System.Drawing.Size(100, 20);
@@ -219,7 +221,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(152, 201);
+            this.btnClear.Location = new System.Drawing.Point(195, 243);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 15;
@@ -263,11 +265,30 @@
             this.txtMaximumInvoice.Size = new System.Drawing.Size(100, 20);
             this.txtMaximumInvoice.TabIndex = 19;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(78, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Customer Type";
+            // 
+            // txtCustomerType
+            // 
+            this.txtCustomerType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCustomerType.Location = new System.Drawing.Point(118, 16);
+            this.txtCustomerType.Name = "txtCustomerType";
+            this.txtCustomerType.Size = new System.Drawing.Size(100, 20);
+            this.txtCustomerType.TabIndex = 1;
+            // 
             // fimInvoiceCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(491, 254);
+            this.ClientSize = new System.Drawing.Size(518, 292);
+            this.Controls.Add(this.txtCustomerType);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtMaximumInvoice);
             this.Controls.Add(this.txtMinimumInvoice);
             this.Controls.Add(this.label10);
@@ -324,6 +345,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtMinimumInvoice;
         private System.Windows.Forms.TextBox txtMaximumInvoice;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtCustomerType;
     }
 }
 

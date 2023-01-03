@@ -26,8 +26,40 @@ namespace InvoiceCalculator
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            string customerType = txtCustomerType.Text;
+
             decimal subTotal = Convert.ToDecimal(txtEnterSubtotal.Text);
-            decimal discountPercent = .25m;
+            decimal discountPercent = 0m;
+
+            switch (customerType)
+            {
+                case "R":
+                case "r":
+                    if (subTotal < 100)
+                        discountPercent = .0m;
+                    else if (subTotal >= 100 && subTotal < 250)
+                        discountPercent = .1m;
+                    else
+                        discountPercent = .25m;
+                    break;
+                case "C":
+                case "c":
+                    if (subTotal < 250)
+                        discountPercent = .2m;
+                    else
+                        discountPercent = .3m;
+                    break;
+                case "T":
+                case "t":
+                    if (subTotal < 500)
+                        discountPercent = .4m;
+                    else
+                        discountPercent = .5m;
+                    break;
+                default:
+                    discountPercent = .4m;
+                    break;
+            }
             decimal discountAmount = Math.Round(subTotal * discountPercent, 2);
             decimal invoiceTotal = subTotal - discountAmount;
 
@@ -76,10 +108,8 @@ namespace InvoiceCalculator
 
             txtMinimumInvoice.Text = null;
             txtMaximumInvoice.Text = null;
-
-            txtEnterSubtotal.Focus();
-
+            txtCustomerType.Text = null;
+            
         }
-
     }
 }
