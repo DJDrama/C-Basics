@@ -19,15 +19,35 @@ namespace InvoiceCalculator
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            decimal monthlyInvestment = Convert.ToDecimal(txtMonthlyInvestment.Text);
-            decimal yearlyInterestRate = Convert.ToDecimal(txtYearlyInterestRate.Text);
-            int years = Convert.ToInt32(txtNumberOfYears.Text);
-            int month = years * 12;
+            try
+            {
+                decimal monthlyInvestment = Convert.ToDecimal(txtMonthlyInvestment.Text);
+                decimal yearlyInterestRate = Convert.ToDecimal(txtYearlyInterestRate.Text);
+                int years = Convert.ToInt32(txtNumberOfYears.Text);
+                int month = years * 12;
 
-            decimal monthlyIntersetRate = yearlyInterestRate / 12 / 100;
+                decimal monthlyIntersetRate = yearlyInterestRate / 12 / 100;
 
-            decimal futureValue = CalculateFutureValue(monthlyInvestment, monthlyIntersetRate, month);
-            txtFutureValue.Text = futureValue.ToString("c");
+                decimal futureValue = CalculateFutureValue(monthlyInvestment, monthlyIntersetRate, month);
+                txtFutureValue.Text = futureValue.ToString("c");
+            }
+            catch (FormatException fex)
+            {
+                MessageBox.Show(fex.Message, fex.GetType().ToString());
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Overflow Error!", "Entry Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+            finally
+            {
+                Console.WriteLine("Finally Called!");
+            }
+
             txtMonthlyInvestment.Focus();
         }
 
