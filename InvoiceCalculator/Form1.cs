@@ -24,6 +24,10 @@ namespace InvoiceCalculator
             InitializeComponent();
         }
 
+        int totalIndex = 0;
+        decimal[] invoiceTotalsArray = new decimal[5];
+        List<decimal> invoiceTotalsList = new List<decimal>();
+
         private (decimal discountPercent, decimal discountAmount, decimal invoiceTotal) GetInvoiceAmounts(string customerType, decimal subTotal)
         {
             decimal discountPercent = 0m;
@@ -107,7 +111,12 @@ namespace InvoiceCalculator
                 txtTotalOfInvoices.Text = totalOfInvoices.ToString("c");
                 txtInvoiceAverage.Text = invoiceAverage.ToString("c");
 
+                invoiceTotalsArray[totalIndex] = invoiceTotal;
+                totalIndex++;
+
+                invoiceTotalsList.Add(invoiceTotal);
             }
+
             catch (FormatException)
             {
                 MessageBox.Show("Please enter a valid number!", "Entry Error");
@@ -115,6 +124,10 @@ namespace InvoiceCalculator
             catch (OverflowException)
             {
                 MessageBox.Show("The number you entered is too large!", "Entry Error");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("Only up to 5 is allowed!", "Entry Error");
             }
             catch (Exception ex)
             {
@@ -126,6 +139,27 @@ namespace InvoiceCalculator
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Array.Sort(invoiceTotalsArray);
+            string message = "";
+            foreach(decimal total in invoiceTotalsArray)
+            {
+                if(total != 0)
+                {
+                    message += total.ToString("c") + "\n";
+                }
+            }
+            MessageBox.Show(message, "Order Totals - Array");
+
+            invoiceTotalsList.Sort();
+            message = "";
+            foreach(decimal total in invoiceTotalsList)
+            {
+                if (total != 0)
+                {
+                    message += total.ToString("c") + "\n";
+                }
+            }
+            MessageBox.Show(message, "Order Totals - List");
             this.Close();
         }
 

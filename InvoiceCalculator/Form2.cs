@@ -17,6 +17,10 @@ namespace InvoiceCalculator
             InitializeComponent();
         }
 
+        string[,] calculationsTable = new string[10, 4];
+        int row = 0;
+
+
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             try
@@ -34,6 +38,13 @@ namespace InvoiceCalculator
 
                 decimal futureValue = CalculateFutureValue(monthlyInvestment, monthlyIntersetRate, month);
                 txtFutureValue.Text = futureValue.ToString("c");
+
+                decimal intresetRatePercent = yearlyInterestRate / 100;
+                calculationsTable[row, 0] = monthlyInvestment.ToString("c");
+                calculationsTable[row, 1] = intresetRatePercent.ToString("p1");
+                calculationsTable[row, 2] = years.ToString();
+                calculationsTable[row, 3] = futureValue.ToString("c");
+                row++;
             }
             catch (FormatException fex)
             {
@@ -122,6 +133,19 @@ namespace InvoiceCalculator
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            string message = "Inv/Mo\tRate\tYears\tFuture Value\n";
+            for (int i = 0; i<calculationsTable.GetLength(0); i++)
+            {
+                if (calculationsTable[i, 0] != null)
+                {
+                    for(int j=0; j<calculationsTable.GetLength(1); j++)
+                    {
+                        message += calculationsTable[i, j] +"\t";
+                    }
+                }
+                message += "\n";
+            }
+            MessageBox.Show(message, "Future Value calculations");
             Close();
         }
 
