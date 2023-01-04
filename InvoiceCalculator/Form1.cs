@@ -66,34 +66,60 @@ namespace InvoiceCalculator
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             string customerType = txtCustomerType.Text;
-            decimal subTotal = Convert.ToDecimal(txtEnterSubtotal.Text);
+            try
+            {
+                if(txtEnterSubtotal.Text == "")
+                {
+                    MessageBox.Show("Subtotal is Required!", "Entry Error");
+                    return;
+                }
+                decimal subTotal = Decimal.Parse(txtEnterSubtotal.Text);
 
-            // Tuple
-            (decimal discountPercent, 
-                decimal discountAmount, 
-                decimal invoiceTotal) = GetInvoiceAmounts(customerType, subTotal);
+                if(subTotal <= 0 || subTotal >= 10000) //invalid range
+                {
+                    MessageBox.Show("Subtotal should be greater than 0 and less than 10,000!", "Entry Error!");
+                    return;
+                }
 
-         
-            maximumInvoice = Math.Max(maximumInvoice, invoiceTotal);
-            minimumInvoice = Math.Min(minimumInvoice, invoiceTotal);
+                // Tuple
+                (decimal discountPercent,
+                    decimal discountAmount,
+                    decimal invoiceTotal) = GetInvoiceAmounts(customerType, subTotal);
 
-            txtMinimumInvoice.Text = minimumInvoice.ToString("c");
-            txtMaximumInvoice.Text = maximumInvoice.ToString("c");
 
-            txtSubtotal.Text = subTotal.ToString("c");
-             txtTotal.Text = invoiceTotal.ToString("c");
+                maximumInvoice = Math.Max(maximumInvoice, invoiceTotal);
+                minimumInvoice = Math.Min(minimumInvoice, invoiceTotal);
 
-            txtDiscountPercent.Text = discountPercent.ToString("p1"); // percent formatting (p1)
-            txtDiscountAmount.Text = discountAmount.ToString("c"); // currency formatting (c)
+                txtMinimumInvoice.Text = minimumInvoice.ToString("c");
+                txtMaximumInvoice.Text = maximumInvoice.ToString("c");
 
-            numberOfInvoices++;
-            totalOfInvoices += invoiceTotal;
-            invoiceAverage = totalOfInvoices / numberOfInvoices;
+                txtSubtotal.Text = subTotal.ToString("c");
+                txtTotal.Text = invoiceTotal.ToString("c");
 
-            txtNumberOfInvoices.Text = numberOfInvoices.ToString();
-            txtTotalOfInvoices.Text = totalOfInvoices.ToString("c");
-            txtInvoiceAverage.Text = invoiceAverage.ToString("c");
+                txtDiscountPercent.Text = discountPercent.ToString("p1"); // percent formatting (p1)
+                txtDiscountAmount.Text = discountAmount.ToString("c"); // currency formatting (c)
 
+                numberOfInvoices++;
+                totalOfInvoices += invoiceTotal;
+                invoiceAverage = totalOfInvoices / numberOfInvoices;
+
+                txtNumberOfInvoices.Text = numberOfInvoices.ToString();
+                txtTotalOfInvoices.Text = totalOfInvoices.ToString("c");
+                txtInvoiceAverage.Text = invoiceAverage.ToString("c");
+
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Please enter a valid number!", "Entry Error");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("The number you entered is too large!", "Entry Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
             txtEnterSubtotal.Text = null; // or .Text = "";
             txtEnterSubtotal.Focus();
         }
@@ -121,7 +147,7 @@ namespace InvoiceCalculator
             txtMinimumInvoice.Text = null;
             txtMaximumInvoice.Text = null;
             txtCustomerType.Text = null;
-            
+
         }
     }
 }
